@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas - Aula 04</title>
+</head>
+
+<body>
+
+    <canvas id="desenho1" width="500" height="500" style="border: 1px solid #000;">
+        <!--SO VAI EXIBIR SE O CONTEUDO DO CANVAS NÃO CARREGAR-->
+        <p style="color:red;">Seu navegador não possuir suporte ao CANVAS</p>
+    </canvas>
+
+</body>
+    <script type="text/javascript">
+        /*Declaração de Variaveis*/
+        
+        let px = 50
+        let py = 10
+        let larRet = altRet = 50
+        let anima
+        let direcao = true
+        let l_canvas = a_canvas = 500
+
+        function desenha(){
+            var canvas = document.getElementById("desenho1")
+            var ctx = canvas.getContext('2d')
+
+            ctx.clearRect(0,0,l_canvas,a_canvas)
+
+            ctx.fillStyle = '#f00'
+            ctx.fillRect(px,py,larRet,altRet)
+
+            if(px+50!=500 && direcao){
+                px++
+            }else if(px!=0){
+                direcao = false
+                px--
+            }else if(px==0 && !direcao){direcao=true}
+
+            anima=requestAnimationFrame(desenha)
+        }
+        desenha()
+    </script>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas - Aula 01</title>
+    <style>
+        #desenho1{
+            border: 1px solid #000;
+            outline: 1px solid rgb(43, 42, 42);
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="desenho1" width="500" height="500">
+        <!--SO VAI EXIBIR SE O CONTEUDO DO CANVAS NÃO CARREGAR-->
+        <p style="color:red;">Seu navegador não possuir suporte ao CANVAS</p>
+    </canvas>
+    <script type="text/javascript">
+        var canvas = document.getElementById("desenho1")
+        var ctx = canvas.getContext('2d')
+        /*Preenchimento do contexto*/
+        ctx.fillStyle="#00f"
+        ctx.fillRect(0,0,100,100)
+
+        ctx.fillStyle="rgba(255,0,0,0.5)"
+        ctx.fillRect(50,50,100,100)
+
+    </script>
+</body>
+</html>

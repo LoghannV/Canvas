@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas - Aula 06</title>
+</head>
+
+<body>
+
+    <canvas id="desenho1" width="500" height="500" style="border: 1px solid #000;">
+        <!--SO VAI EXIBIR SE O CONTEUDO DO CANVAS NÃO CARREGAR-->
+        <p style="color:red;">Seu navegador não possuir suporte ao CANVAS</p>
+    </canvas>
+
+</body>
+    <script type="text/javascript">
+        /*Declaração de Variaveis*/
+        
+        let px = 50
+        let py = 0
+        let larRet = altRet = 50
+        let anima
+        let dx = 1
+        let dy = 0
+        let l_canvas = a_canvas = 500
+
+        function desenha(){
+            var canvas = document.getElementById("desenho1")
+            var ctx = canvas.getContext('2d')
+
+            ctx.clearRect(0,0,l_canvas,a_canvas)
+
+            ctx.fillStyle = '#f00'
+            ctx.fillWidth = 4
+            ctx.stokeStyle = '#000'
+
+            ctx.fillRect(px,py,larRet,altRet)
+            ctx.strokeRect(px,py,larRet,altRet)
+
+            px+=dx
+            py+=dy
+            // if((px+larRet>=l_canvas)||(px<=0)){dx*=-1}
+            if((px+larRet>=l_canvas)){
+                dy=1
+                dx=0
+            }
+            if((py+altRet)>=a_canvas){
+                dx=-1
+                dy=0
+            }
+            if((px<=0)&&((py+altRet)>=a_canvas)){
+                dx=0
+                dy=-1
+            }
+            if((py<=0)&&(dy<0)){
+                dy=0
+                dx=1
+            }
+            
+
+            anima=requestAnimationFrame(desenha)
+        }
+        desenha()
+    </script>
+</html>

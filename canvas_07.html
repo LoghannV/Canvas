@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas - Aula 07</title>
+</head>
+
+<body>
+
+    <canvas id="desenho1" width="500" height="500" style="border: 1px solid #000;">
+        <!--SO VAI EXIBIR SE O CONTEUDO DO CANVAS NÃO CARREGAR-->
+        <p style="color:red;">Seu navegador não possuir suporte ao CANVAS</p>
+    </canvas>
+
+</body>
+    <script type="text/javascript">
+        /*Declaração de Variaveis*/
+        
+        let canvas = document.getElementById("desenho1")
+        let ctx = canvas.getContext('2d')
+
+        function desenha(){
+        //(PI/180)*ANGULO EM GRAU
+          ctx.fillStyle = '#f00'
+          ctx.arc(100,100,100,(Math.PI/180)*0,(Math.PI/180)*360,false)
+          ctx.fill()
+          ctx.beginPath()
+          ctx.fillStyle = '#00f'
+          ctx.arc(200,100,100,(Math.PI/180)*0,(Math.PI/180)*360,false)
+          ctx.fill()
+        }
+        desenha()
+    </script>
+</html>

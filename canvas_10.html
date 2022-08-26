@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas - Aula 10</title>
+</head>
+
+<body>
+
+    <canvas id="desenho1" width="500" height="500" style="border: 1px solid #000;">
+        <!--SO VAI EXIBIR SE O CONTEUDO DO CANVAS NÃO CARREGAR-->
+        <p style="color:red;">Seu navegador não possuir suporte ao CANVAS</p>
+    </canvas>
+
+</body>
+    <script type="text/javascript">
+        /*Declaração de Variaveis*/
+        
+        let canvas = document.getElementById("desenho1")
+        let ctx = canvas.getContext('2d')
+
+        //Inserir Imagem no CANVAS
+
+        let cores = new Image()
+        cores.src = 'cores.jpg'
+        cores.onload = ()=>{
+            //imagem, XiniRecorte, YiniRecorte, Lrecorte, posX, posY, Limagem,Aimagem
+            ctx.drawImage(cores,100,0,50,50,0,0,50,50)
+        }
+       
+
+        //x1,y1,x2,y2,raio
+        function desenha(){
+
+        }
+        desenha()
+    </script>
+</html>

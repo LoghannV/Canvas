@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas - Aula 13</title>
+</head>
+
+<body>
+    <canvas id="desenho1" width="500" height="500" style="border: 1px solid #000;">
+        <!--SO VAI EXIBIR SE O CONTEUDO DO CANVAS NÃO CARREGAR-->
+        <p style="color:red;">Seu navegador não possuir suporte ao CANVAS</p>
+    </canvas>
+
+</body>
+    <script type="text/javascript">
+        /*Declaração de Variaveis*/
+        
+        let canvas = document.getElementById("desenho1")
+        let ctx = canvas.getContext('2d')
+
+        //Inserir Imagem no CANVAS
+       
+        let jogador = new Image()
+        jogador.src = 'jogador.png'
+        let numSprites = 0
+        let posIniX = 0
+        let Limagem = 0
+        let largSprite = 0
+        let numSpries = 4
+        let altSprite = 0
+        let posX = 0
+        let posY = 0
+        let velocidade = 2
+        let posIniY = 0
+        let cima = baixo = esquerda = direita = false
+        jogador.onload = ()=>{
+            largSprite = jogador.width/numSpries
+            altSprite = jogador.height/numSpries
+            posIniX=largSprite*numSprites
+            posIniY = altSprite*0
+            //imagem, XiniRecorte, YiniRecorte, Lrecorte, posX, posY, Limagem,Aimagem
+            ctx.drawImage(jogador,posIniX,posIniY,largSprite,altSprite,posX,posY,largSprite,altSprite)
+        }
+
+ /*       let anima = setInterval(()=>{
+            ctx.clearRect(0,0,500,500)
+            numSprites++
+            posIniX = largSprite*numSprites
+            if(numSprites>2){numSprites=0}
+            ctx.drawImage(jogador,posIniX,posIniY,largSprite,altSprite,posX,posY,largSprite,altSprite)
+        },200)
+*/
+        const desenha = ()=>{
+            ctx.clearRect(0,0,500,500)
+            ctx.drawImage(jogador,posIniX,posIniY,largSprite,altSprite,posX,posY,largSprite,altSprite)
+        }
+        window.addEventListener('keydown',()=>{
+            let tecla = event.keyCode
+            if(tecla==37){
+                esquerda=true
+            }else if(tecla==39){
+                direita = true
+            }else if(tecla=38){
+                cima = true
+            }else if(tecla==40){
+                baixo = true
+            }
+        })
+        window.addEventListener('keyup',()=>{
+            let tecla = event.keyCode
+            if(tecla==37){
+                esquerda=false
+            }else if(tecla==39){
+                direita = false
+            }else if(tecla=38){
+                cima = false
+            }else if(tecla==40){
+                baixo = false
+            }
+        })
+        
+        const game = ()=>{
+            if(cima){
+                posY-=velocidade
+            }if(baixo){
+                posY += velocidade
+            }if(esquerda){
+                posX -=velocidade
+            }if(direita){
+                posX += velocidade
+            }
+            desenha()
+            requestAnimationFrame(game)
+        }
+        game()
+
+    </script>
+</html>

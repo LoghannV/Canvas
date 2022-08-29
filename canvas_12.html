@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas - Aula 12</title>
+</head>
+
+<body>
+    <canvas id="desenho1" width="500" height="500" style="border: 1px solid #000;">
+        <!--SO VAI EXIBIR SE O CONTEUDO DO CANVAS NÃO CARREGAR-->
+        <p style="color:red;">Seu navegador não possuir suporte ao CANVAS</p>
+    </canvas>
+
+</body>
+    <script type="text/javascript">
+        /*Declaração de Variaveis*/
+        
+        let canvas = document.getElementById("desenho1")
+        let ctx = canvas.getContext('2d')
+
+        //Inserir Imagem no CANVAS
+       
+        let jogador = new Image()
+        jogador.src = 'jogador.png'
+        let numSprites = 0
+        let posIniX = 0
+        let Limagem = 0
+        let largSprite = 0
+        let numSpries = 4
+        let altSprite = 0
+        let posX = 0
+        let posY = 0
+        let velocidade = 2
+        jogador.onload = ()=>{
+            largSprite = jogador.width/numSpries
+            altSprite = jogador.height/numSpries
+            posIniX=largSprite*numSprites
+            posIniY = altSprite*tipo
+            //imagem, XiniRecorte, YiniRecorte, Lrecorte, posX, posY, Limagem,Aimagem
+            ctx.drawImage(jogador,posIniX,posIniY,largSprite,altSprite,posX,posY,largSprite,altSprite)
+        }
+
+        let anima = setInterval(()=>{
+            ctx.clearRect(0,0,500,500)
+            numSprites++
+            posIniX = largSprite*numSprites
+            if(numSprites>2){numSprites=0}
+            ctx.drawImage(jogador,posIniX,posIniY,largSprite,altSprite,posX,posY,largSprite,altSprite)
+        },200)
+
+        window.addEventListener('keydown',()=>{
+            let tecla = event.keyCode
+            if(tecla==37){
+                posX-=velocidade
+            }else if(tecla==39){
+                posX+=velocidade
+            }else if(tecla=38){
+                posY-=velocidade
+            }else if(tecla==40){
+                posY+=velocidade
+            }
+            console.log(tecla)
+        })
+
+    </script>
+</html>

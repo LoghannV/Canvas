@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas - Aula 15</title>
+
+</head>
+
+<body>
+    <canvas id="desenho1" width="500" height="500" style="border: 1px solid #000;">
+        <!--SO VAI EXIBIR SE O CONTEUDO DO CANVAS NÃO CARREGAR-->
+        <p style="color:red;">Seu navegador não possuir suporte ao CANVAS</p>
+    </canvas>
+    <p id="exibir"></p>
+</body>
+<script src="jogador.js"></script>
+<script src="cometa.js"></script>
+    <script type="text/javascript">
+        /*Declaração de Variaveis*/
+        
+        let canvas = document.getElementById("desenho1")
+        let ctx = canvas.getContext('2d')
+        ctx.fillStyle='black'
+        ctx.fillRect(0,0,canvas.width,canvas.height)
+        const teclado={
+            cima:false,
+            baixo:false,
+            esquerda:false,
+            direita:false
+        }
+        const jogador = new Jogador(ctx,teclado)
+        const cometa = new Cometa(ctx)
+
+        window.addEventListener('keydown',()=>{
+            let tecla = event.keyCode
+            if(tecla==37){
+                teclado.esquerda=true
+            }if(tecla==39){
+                teclado.direita = true
+            }if(tecla==38){
+                teclado.cima = true
+            }if(tecla==40){
+                teclado.baixo = true
+            }
+          
+        })
+        window.addEventListener('keyup',()=>{
+            let tecla = event.keyCode
+            if(tecla==37){
+                teclado.esquerda=false
+            }if(tecla==39){
+                teclado.direita = false
+            }if(tecla==38){
+                teclado.cima = false
+            }if(tecla==40){
+                teclado.baixo = false
+            }
+
+        })
+        
+        const game = ()=>{
+            ctx.clearRect(0,0,canvas.width,canvas.height)
+            ctx.fillStyle='black'
+            ctx.fillRect(0,0,canvas.width,canvas.height)
+            cometa.desenha()
+            jogador.desenhar()
+            requestAnimationFrame(game)
+        }
+        game()
+
+    </script>
+</html>

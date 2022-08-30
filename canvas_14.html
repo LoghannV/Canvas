@@ -14,6 +14,7 @@
     </canvas>
 
 </body>
+<script src="jogador.js"></script>
     <script type="text/javascript">
         /*Declaração de Variaveis*/
         
@@ -26,6 +27,7 @@
             esquerda:false,
             direita:false
         }
+        const jogador = new Jogador(ctx,teclado)
 
         window.addEventListener('keydown',()=>{
             let tecla = event.keyCode

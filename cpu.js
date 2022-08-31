@@ -37,6 +37,15 @@ class CPU{
                 this.x += this.vel
             }
         }
+        if(
+            this.x<=this.bola.x+this.bola.largura &&
+            this.x+this.largura >= this.bola.x &&
+            (this.y+this.altura>=this.bola.y &&
+            this.y <= this.y+this.bola.altura)
+        ){
+            this.bola.dirx*=1
+            this.diry=((this.y+(this.altura/2))-(this.bola.y+(this.bola.altura/2)))/5
+        }
     }
 
     desenhar(){
